@@ -1,17 +1,23 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
-import { Form, ReportContext } from "components";
+import { Form } from "components";
 import {
   mockForm,
-  mockMcparReportContext,
-  mockMlrReportContext,
+  mockMcparReportSubmittedContext,
+  mockMLRLockedReportContext,
   mockNonFieldForm,
+  mockUseStore,
   RouterWrappedComponent,
 } from "utils/testing/setupJest";
-import { ReportStatus } from "types";
+// utils
+import { useStore } from "utils";
 
 const mockOnSubmit = jest.fn();
+
+jest.mock("utils/state/useStore");
+const mockedUseStore = useStore as jest.MockedFunction<typeof useStore>;
+mockedUseStore.mockReturnValue(mockUseStore);
 
 const formComponent = (
   <RouterWrappedComponent>
@@ -40,50 +46,6 @@ const formComponentJustHeader = (
     <button form={mockNonFieldForm.id} type="submit">
       Submit
     </button>
-  </RouterWrappedComponent>
-);
-
-const mlrFormSubmitted = (
-  <RouterWrappedComponent>
-    <ReportContext.Provider
-      value={{
-        ...mockMlrReportContext,
-        report: {
-          ...mockMlrReportContext.report,
-          status: ReportStatus.SUBMITTED,
-        },
-      }}
-    >
-      <Form
-        id={mockForm.id}
-        formJson={mockForm}
-        onSubmit={mockOnSubmit}
-        validateOnRender={false}
-        dontReset={false}
-      />
-    </ReportContext.Provider>
-  </RouterWrappedComponent>
-);
-
-const mcparFormSubmitted = (
-  <RouterWrappedComponent>
-    <ReportContext.Provider
-      value={{
-        ...mockMcparReportContext,
-        report: {
-          ...mockMcparReportContext.report,
-          status: ReportStatus.SUBMITTED,
-        },
-      }}
-    >
-      <Form
-        id={mockForm.id}
-        formJson={mockForm}
-        onSubmit={mockOnSubmit}
-        validateOnRender={false}
-        dontReset={false}
-      />
-    </ReportContext.Provider>
   </RouterWrappedComponent>
 );
 
@@ -125,14 +87,16 @@ describe("Test Form component", () => {
   });
 
   test("MLR forms should be disabled after being submitted", async () => {
-    const { container } = render(mlrFormSubmitted);
+    mockedUseStore.mockReturnValue(mockMLRLockedReportContext);
+    const { container } = render(formComponent);
     await container.querySelectorAll("input").forEach((x) => {
       expect(x).toBeDisabled();
     });
   });
 
   test("MCPAR forms should be disabled after being submitted", async () => {
-    const { container } = render(mcparFormSubmitted);
+    mockedUseStore.mockReturnValue(mockMcparReportSubmittedContext);
+    const { container } = render(formComponent);
     await container.querySelectorAll("input").forEach((x) => {
       expect(x).toBeDisabled();
     });

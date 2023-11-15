@@ -366,6 +366,42 @@ export const mockMcparReportCombinedData = {
   previousRevisions: [],
 };
 
+export const mockMcparReportSubmitted = {
+  ...mockReportKeys,
+  reportType: "MCPAR",
+  formTemplate: mockReportJson,
+  programName: "testProgram",
+  status: ReportStatus.SUBMITTED,
+  dueDate: 168515200000,
+  reportingPeriodStartDate: 162515200000,
+  reportingPeriodEndDate: 168515200000,
+  createdAt: 162515200000,
+  lastAltered: 162515200000,
+  lastAlteredBy: "Thelonious States",
+  combinedData: false,
+  programIsPCCM: [
+    {
+      key: "programIsPCCM-no_programIsNotPCCM",
+      value: "No",
+    },
+  ],
+  submittedOnDate: Date.now(),
+  fieldData: mockReportFieldData,
+  fieldDataId: "mockFieldDataId",
+  completionStatus: {
+    "/mock/mock-route-1": true,
+    "/mock/mock-route-2": {
+      "/mock/mock-route-2a": false,
+      "/mock/mock-route-2b": true,
+      "/mock/mock-route-2c": true,
+    },
+  },
+  isComplete: true,
+  locked: true,
+  submissionCount: 0,
+  previousRevisions: [],
+};
+
 export const mockMlrReport = {
   ...mockReportKeys,
   reportType: "MLR",
@@ -594,6 +630,14 @@ export const mockMLRLockedReportContext = {
 export const mockMcparReportCombinedDataContext = {
   ...mockReportMethods,
   report: mockMcparReport,
+  reportsByState: mockReportsByState,
+  errorMessage: "",
+  lastSavedTime: "1:58 PM",
+};
+
+export const mockMcparReportSubmittedContext = {
+  ...mockReportMethods,
+  report: mockMcparReportSubmitted,
   reportsByState: mockReportsByState,
   errorMessage: "",
   lastSavedTime: "1:58 PM",
