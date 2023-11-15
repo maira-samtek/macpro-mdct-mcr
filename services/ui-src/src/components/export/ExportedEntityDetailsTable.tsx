@@ -1,6 +1,6 @@
-import { ReactElement, useContext } from "react";
+import { ReactElement } from "react";
 // components
-import { ReportContext, Table } from "components";
+import { Table } from "components";
 // types, utils
 import {
   EntityShape,
@@ -14,13 +14,14 @@ import {
 // verbiage
 import verbiage from "verbiage/pages/mlr/mlr-export";
 import { ExportedEntityDetailsTableRow } from "./ExportedEntityDetailsTableRow";
+import { useStore } from "utils";
 
 export const ExportedEntityDetailsTable = ({
   fields,
   entity,
   ...props
 }: Props) => {
-  const { report } = useContext(ReportContext);
+  const { report } = useStore();
   const { tableHeaders } = verbiage;
 
   const entityType = "program";

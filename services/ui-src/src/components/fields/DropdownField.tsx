@@ -37,8 +37,8 @@ export const DropdownField = ({
   styleAsOptional,
   ...props
 }: Props) => {
-  const { report, updateReport, copyEligibleReportsByState } =
-    useContext(ReportContext);
+  const { report, copyEligibleReportsByState } = useStore();
+  const { updateReport } = useContext(ReportContext);
   const { entities, entityType, updateEntities, selectedEntity } =
     useContext(EntityContext);
   const { full_name, state } = useStore().user ?? {};

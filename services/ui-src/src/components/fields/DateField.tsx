@@ -31,7 +31,8 @@ export const DateField = ({
   const [displayValue, setDisplayValue] = useState<string>(defaultValue);
   const { full_name, state } = useStore().user ?? {};
 
-  const { report, updateReport } = useContext(ReportContext);
+  const { report } = useStore();
+  const { updateReport } = useContext(ReportContext);
   const { entities, entityType, updateEntities, selectedEntity } =
     useContext(EntityContext);
 

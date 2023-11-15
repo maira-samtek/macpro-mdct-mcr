@@ -24,7 +24,8 @@ import iconSearchDefault from "assets/icons/icon_search_blue.png";
 import iconSearchSubmitted from "assets/icons/icon_search_white.png";
 
 export const ReviewSubmitPage = () => {
-  const { report, fetchReport, submitReport } = useContext(ReportContext);
+  const { report } = useStore();
+  const { fetchReport, submitReport } = useContext(ReportContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [submitting, setSubmitting] = useState<boolean>(false);
@@ -121,7 +122,7 @@ export const ReviewSubmitPage = () => {
 
 const PrintButton = ({ reviewVerbiage }: { reviewVerbiage: AnyObject }) => {
   const { print } = reviewVerbiage;
-  const { report } = useContext(ReportContext);
+  const { report } = useStore();
   const reportType = report?.reportType === "MLR" ? "mlr" : "mcpar";
   const isSubmitted = report?.status === "Submitted";
   return (

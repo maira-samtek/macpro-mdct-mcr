@@ -14,19 +14,13 @@ import {
   sortReportsOldestToNewest,
   useStore,
 } from "utils";
-import {
-  ReportKeys,
-  ReportContextShape,
-  ReportShape,
-  ReportMetadataShape,
-} from "types";
+import { ReportKeys, ReportContextShape, ReportShape } from "types";
 import { reportErrors } from "verbiage/errors";
 
 // CONTEXT DECLARATION
 
 export const ReportContext = createContext<ReportContextShape>({
   // report
-  report: undefined as ReportShape | undefined,
   contextIsLoaded: false as boolean,
   archiveReport: Function,
   releaseReport: Function,
@@ -35,36 +29,36 @@ export const ReportContext = createContext<ReportContextShape>({
   updateReport: Function,
   submitReport: Function,
   // reports by state
-  reportsByState: undefined as ReportMetadataShape[] | undefined,
-  copyEligibleReportsByState: undefined as ReportMetadataShape[] | undefined,
   fetchReportsByState: Function,
+  clearReportsByState: Function,
   // selected report
   clearReportSelection: Function,
-  clearReportsByState: Function,
   setReportSelection: Function,
+  setCopyEligibleReportsByState: Function,
   isReportPage: false as boolean,
   errorMessage: undefined as string | undefined,
-  lastSavedTime: undefined as string | undefined,
 });
 
 export const ReportProvider = ({ children }: Props) => {
   const { pathname } = useLocation();
-  const { state: userState } = useStore().user ?? {};
-  const [lastSavedTime, setLastSavedTime] = useState<string>();
   const [error, setError] = useState<string>();
   const [contextIsLoaded, setContextIsLoaded] = useState<boolean>(false);
   const [isReportPage, setIsReportPage] = useState<boolean>(false);
 
-  // REPORT
+  // state management
+  const {
+    report,
+    setReport,
+    reportsByState,
+    setReportsByState,
+    copyEligibleReportsByState,
+    setCopyEligibleReportsByState,
+    clearReportsByState,
+    lastSavedTime,
+    setLastSavedTime,
+  } = useStore();
 
-  const [report, setReport] = useState<ReportShape | undefined>();
-  const [reportsByState, setReportsByState] = useState<
-    ReportShape[] | undefined
-  >();
-
-  const [copyEligibleReportsByState, setCopyEligibleReportsByState] = useState<
-    ReportShape[] | undefined
-  >();
+  const { state: userState } = useStore().user ?? {};
 
   const hydrateAndSetReport = (report: ReportShape | undefined) => {
     if (report) {
@@ -160,10 +154,6 @@ export const ReportProvider = ({ children }: Props) => {
     localStorage.setItem("selectedReport", "");
   };
 
-  const clearReportsByState = () => {
-    setReportsByState(undefined);
-  };
-
   const setReportSelection = async (report: ReportShape) => {
     hydrateAndSetReport(report);
     localStorage.setItem("selectedReportType", report.reportType);
@@ -204,9 +194,10 @@ export const ReportProvider = ({ children }: Props) => {
 
   const providerValue = useMemo(
     () => ({
+      // context
+      contextIsLoaded,
       // report
       report,
-      contextIsLoaded,
       archiveReport,
       releaseReport,
       fetchReport,
@@ -215,12 +206,15 @@ export const ReportProvider = ({ children }: Props) => {
       submitReport,
       // reports by state
       reportsByState,
-      copyEligibleReportsByState,
       fetchReportsByState,
+      // copy eligible reports by state
+      copyEligibleReportsByState,
+      setCopyEligibleReportsByState,
       // selected report
-      clearReportSelection,
-      clearReportsByState,
       setReportSelection,
+      clearReportSelection,
+      // selected reports by state
+      clearReportsByState,
       isReportPage,
       errorMessage: error,
       lastSavedTime,

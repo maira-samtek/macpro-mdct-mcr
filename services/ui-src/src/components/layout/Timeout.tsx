@@ -1,4 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import moment from "moment";
+import { useLocation } from "react-router-dom";
+// components
 import {
   Button,
   Modal,
@@ -9,18 +12,19 @@ import {
   ModalContent,
   Text,
 } from "@chakra-ui/react";
-import { useLocation } from "react-router-dom";
+// utils
 import {
   calculateRemainingSeconds,
   refreshCredentials,
   updateTimeout,
-  useStore,
+  UserContext,
 } from "utils";
 import { PROMPT_AT, IDLE_WINDOW } from "../../constants";
-import moment from "moment";
 
 export const Timeout = () => {
-  const { logout } = useStore();
+  const context = useContext(UserContext);
+  const { logout } = context;
+
   const [timeLeft, setTimeLeft] = useState((IDLE_WINDOW - PROMPT_AT) / 1000);
   const [showTimeout, setShowTimeout] = useState(false);
   const [timeoutPromptId, setTimeoutPromptId] = useState<number>();

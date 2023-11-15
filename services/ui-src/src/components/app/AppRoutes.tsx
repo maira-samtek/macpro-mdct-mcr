@@ -21,9 +21,10 @@ import { Fragment, useContext } from "react";
 import { Flex, Spinner } from "@chakra-ui/react";
 
 export const AppRoutes = () => {
+  const { report } = useStore();
   const { userIsAdmin, userReports } = useStore().user ?? {};
   const mlrReport = useFlags()?.mlrReport;
-  const { report, contextIsLoaded } = useContext(ReportContext);
+  const { contextIsLoaded } = useContext(ReportContext);
 
   // determine if the user has access to specific reports
   const userReportAccess = {

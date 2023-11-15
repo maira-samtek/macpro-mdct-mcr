@@ -19,7 +19,8 @@ import {
 
 export const StandardReportPage = ({ route, validateOnRender }: Props) => {
   const [submitting, setSubmitting] = useState<boolean>(false);
-  const { report, updateReport } = useContext(ReportContext);
+  const { report } = useStore();
+  const { updateReport } = useContext(ReportContext);
   const { full_name, state } = useStore().user ?? {};
   const navigate = useNavigate();
   const { nextRoute } = useFindRoute(

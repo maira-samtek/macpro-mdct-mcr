@@ -29,12 +29,9 @@ export const AddEditReportModal = ({
   reportType,
   modalDisclosure,
 }: Props) => {
-  const {
-    createReport,
-    fetchReportsByState,
-    updateReport,
-    copyEligibleReportsByState,
-  } = useContext(ReportContext);
+  const { copyEligibleReportsByState } = useStore();
+  const { createReport, fetchReportsByState, updateReport } =
+    useContext(ReportContext);
   const { full_name } = useStore().user ?? {};
   const [submitting, setSubmitting] = useState<boolean>(false);
   const yoyCopyFlag = useFlags()?.yoyCopy;

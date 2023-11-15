@@ -533,6 +533,7 @@ export const mockReportMethods = {
   clearReportSelection: jest.fn(),
   clearReportsByState: jest.fn(),
   setReportSelection: jest.fn(),
+  setCopyEligibleReportsByState: jest.fn(),
   isReportPage: true,
   contextIsLoaded: true,
 };

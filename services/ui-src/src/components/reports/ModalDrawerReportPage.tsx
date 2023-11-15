@@ -41,7 +41,8 @@ export const ModalDrawerReportPage = ({ route, validateOnRender }: Props) => {
     undefined
   );
 
-  const { report, updateReport } = useContext(ReportContext);
+  const { report } = useStore();
+  const { updateReport } = useContext(ReportContext);
   const reportFieldDataEntities = report?.fieldData[entityType] || [];
 
   // create drawerForm from json with repeated fields

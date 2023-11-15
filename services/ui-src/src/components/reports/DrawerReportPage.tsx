@@ -36,7 +36,8 @@ import completedIcon from "assets/icons/icon_check_circle.png";
 export const DrawerReportPage = ({ route, validateOnRender }: Props) => {
   const [submitting, setSubmitting] = useState<boolean>(false);
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const { report, updateReport } = useContext(ReportContext);
+  const { report } = useStore();
+  const { updateReport } = useContext(ReportContext);
   const { full_name, state, userIsEndUser } = useStore().user ?? {};
   // make state
   const [selectedEntity, setSelectedEntity] = useState<EntityShape | undefined>(

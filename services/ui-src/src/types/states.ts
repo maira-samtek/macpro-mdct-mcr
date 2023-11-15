@@ -38,7 +38,7 @@ export interface McrReportState {
   // INITIAL STATE
   report: ReportShape | undefined;
   reportsByState: ReportMetadataShape[] | undefined;
-  submittedReportsByState: ReportMetadataShape[] | undefined;
+  copyEligibleReportsByState: ReportMetadataShape[] | undefined;
   lastSavedTime: string | undefined;
   // ACTIONS
   setReport: (newReport: ReportShape | undefined) => void;
@@ -46,8 +46,8 @@ export interface McrReportState {
     newReportsByState: ReportMetadataShape[] | undefined
   ) => void;
   clearReportsByState: () => void;
-  setSubmittedReportsByState: (
-    newSubmittedReportsByState: ReportMetadataShape[] | undefined
+  setCopyEligibleReportsByState: (
+    newCopyEligibleReportsByState: ReportMetadataShape[] | undefined
   ) => void;
   setLastSavedTime: (lastSavedTime: string | undefined) => void;
 }

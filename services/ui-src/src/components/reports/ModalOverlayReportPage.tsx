@@ -45,7 +45,8 @@ export const ModalOverlayReportPage = ({
 
   // Context Information
   const { isTablet, isMobile } = useBreakpoint();
-  const { report, updateReport } = useContext(ReportContext);
+  const { report } = useStore();
+  const { updateReport } = useContext(ReportContext);
   const [isEntityDetailsOpen, setIsEntityDetailsOpen] = useState<boolean>();
   const [currentEntity, setCurrentEntity] = useState<EntityShape | undefined>(
     undefined

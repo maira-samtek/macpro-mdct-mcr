@@ -26,7 +26,8 @@ export const AddEditEntityModal = ({
   selectedEntity,
   modalDisclosure,
 }: Props) => {
-  const { report, updateReport } = useContext(ReportContext);
+  const { report } = useStore();
+  const { updateReport } = useContext(ReportContext);
   const { full_name, userIsEndUser } = useStore().user ?? {};
   const [submitting, setSubmitting] = useState<boolean>(false);
 

@@ -63,7 +63,7 @@ const reportStore = (set: Function) => ({
   // initial state
   report: undefined,
   reportsByState: undefined,
-  submittedReportsByState: undefined,
+  copyEligibleReportsByState: undefined,
   lastSavedTime: undefined,
   // actions
   setReport: (newReport: ReportShape | undefined) =>
@@ -76,13 +76,13 @@ const reportStore = (set: Function) => ({
     set(() => ({ reportsByState: undefined }), false, {
       type: "clearReportsByState",
     }),
-  setSubmittedReportsByState: (
-    newSubmittedReportsByState: ReportMetadataShape[] | undefined
+  setCopyEligibleReportsByState: (
+    newCopyEligibleReportsByState: ReportMetadataShape[] | undefined
   ) =>
     set(
-      () => ({ submittedReportsByState: newSubmittedReportsByState }),
+      () => ({ copyEligibleReportsByState: newCopyEligibleReportsByState }),
       false,
-      { type: "setSubmittedReportsByState" }
+      { type: "setCopyEligibleReportsByState" }
     ),
   setLastSavedTime: (savedTime: string | undefined) =>
     set(() => ({ lastSavedTime: savedTime }), false, {

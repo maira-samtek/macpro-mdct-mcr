@@ -54,15 +54,12 @@ export interface ReportContextMethods {
   clearReportSelection: Function;
   clearReportsByState: Function;
   setReportSelection: Function;
+  setCopyEligibleReportsByState: Function;
 }
 
 export interface ReportContextShape extends ReportContextMethods {
-  report: ReportShape | undefined;
   contextIsLoaded: boolean;
-  reportsByState: ReportMetadataShape[] | undefined;
-  copyEligibleReportsByState: ReportMetadataShape[] | undefined;
   errorMessage?: string | undefined;
-  lastSavedTime?: string | undefined;
   isReportPage: boolean;
 }
 

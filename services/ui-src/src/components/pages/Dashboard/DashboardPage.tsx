@@ -39,11 +39,11 @@ import accordion from "verbiage/pages/accordion";
 import arrowLeftIcon from "assets/icons/icon_arrow_left_blue.png";
 
 export const DashboardPage = ({ reportType }: Props) => {
+  const { reportsByState } = useStore();
   const {
     errorMessage,
     fetchReportsByState,
     fetchReport,
-    reportsByState,
     clearReportSelection,
     setReportSelection,
     archiveReport,

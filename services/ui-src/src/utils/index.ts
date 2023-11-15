@@ -23,6 +23,8 @@ export * from "./tracking/tealium";
 // validation
 export * from "./validation/schemas";
 export * from "./validation/validation";
+// tables
+export * from "./tables/getMlrEntityStatus";
 // other
 export * from "./other/clean";
 export * from "./other/email";

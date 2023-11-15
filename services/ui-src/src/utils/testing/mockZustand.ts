@@ -135,12 +135,12 @@ export const mockBannerStore: AdminBannerState = {
 export const mockReportStore: McrReportState = {
   report: mockMcparReport as ReportShape,
   reportsByState: mockReportsByState,
-  submittedReportsByState: [mockMcparReport],
+  copyEligibleReportsByState: [mockMcparReport],
   lastSavedTime: "1:58 PM",
   setReport: () => {},
   setReportsByState: () => {},
   clearReportsByState: () => {},
-  setSubmittedReportsByState: () => {},
+  setCopyEligibleReportsByState: () => {},
   setLastSavedTime: () => {},
 };
 
@@ -157,12 +157,12 @@ export const mockEntityStore: McrEntityState = {
 export const mockEmptyReportStore: McrReportState = {
   report: undefined,
   reportsByState: undefined,
-  submittedReportsByState: undefined,
+  copyEligibleReportsByState: undefined,
   lastSavedTime: undefined,
   setReport: () => {},
   setReportsByState: () => {},
   clearReportsByState: () => {},
-  setSubmittedReportsByState: () => {},
+  setCopyEligibleReportsByState: () => {},
   setLastSavedTime: () => {},
 };
 

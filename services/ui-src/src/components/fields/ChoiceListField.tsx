@@ -43,7 +43,8 @@ export const ChoiceListField = ({
   const [lastDatabaseValue, setLastDatabaseValue] =
     useState<Choice[]>(defaultValue);
 
-  const { report, updateReport } = useContext(ReportContext);
+  const { report } = useStore();
+  const { updateReport } = useContext(ReportContext);
   const { entities, entityType, updateEntities, selectedEntity } =
     useContext(EntityContext);
   const { full_name, state, userIsAdmin, userIsReadOnly } =

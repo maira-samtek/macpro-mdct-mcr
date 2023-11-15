@@ -12,7 +12,8 @@ export const DeleteEntityModal = ({
   verbiage,
   modalDisclosure,
 }: Props) => {
-  const { report, updateReport } = useContext(ReportContext);
+  const { report } = useStore();
+  const { updateReport } = useContext(ReportContext);
   const { full_name } = useStore().user ?? {};
   const [deleting, setDeleting] = useState<boolean>(false);
 
