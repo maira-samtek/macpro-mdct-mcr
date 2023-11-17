@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { EntityContext, EntityProvider } from "./EntityProvider";
 
 const testEntities = [
@@ -22,41 +22,29 @@ const testEntitiesUpdated = [
   },
 ];
 
-interface Props {
-  noEntity?: boolean;
-}
-
-const TestComponent = (props: Props) => {
-  const { entities, setEntities, updateEntities, setSelectedEntity } =
-    useContext(EntityContext);
-
-  useEffect(() => {
-    setEntities(testEntities);
-    if (!props.noEntity) {
-      setSelectedEntity({ id: "foo" });
-    }
-  }, [setEntities, setSelectedEntity]);
+const TestComponent = () => {
+  const { prepareEntityPayload } = useContext(EntityContext);
 
   return (
     <div>
-      <button onClick={() => updateEntities({ test: "update" })}>
+      <button onClick={() => prepareEntityPayload({ test: "update" })}>
         Update Entities
       </button>
-      <p id="entities">{JSON.stringify(entities)}</p>
-      <p>{entities.length}</p>
+      <p id="entities">{JSON.stringify(testEntities)}</p>
+      <p>{testEntities.length}</p>
     </div>
   );
 };
 
 const testComponent = (
   <EntityProvider>
-    <TestComponent noEntity={false} />
+    <TestComponent />
   </EntityProvider>
 );
 
 const testComponentNoEntity = (
   <EntityProvider>
-    <TestComponent noEntity={true} />
+    <TestComponent />
   </EntityProvider>
 );
 

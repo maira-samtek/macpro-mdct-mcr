@@ -575,7 +575,7 @@ export const mockEntityDetailsContext = {
   selectedEntity: undefined,
   entities: [],
   entityType: "program" as EntityType,
-  updateEntities: jest.fn(),
+  prepareEntityPayload: jest.fn(),
   setEntities: jest.fn(),
   setSelectedEntity: jest.fn(),
   setEntityType: jest.fn(),

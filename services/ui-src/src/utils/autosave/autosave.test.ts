@@ -1,4 +1,5 @@
-import { mockStateUser } from "utils/testing/setupJest";
+import { useStore } from "utils/state/useStore";
+import { mockStateUserStore } from "utils/testing/setupJest";
 import {
   autosaveFieldData,
   EntityContextShape,
@@ -18,8 +19,8 @@ const report = {
   updateReport: jest.fn().mockResolvedValue(true),
 };
 const user = {
-  userName: mockStateUser.user?.email,
-  state: mockStateUser.user?.state,
+  userName: mockStateUserStore.user?.email,
+  state: mockStateUserStore.user?.state,
 };
 
 const fields = [
@@ -42,13 +43,14 @@ const fields = [
 ];
 
 const mockEntityContext: EntityContextShape = {
-  updateEntities: jest.fn(() => {
+  prepareEntityPayload: jest.fn(() => {
     return [{ id: "foo", testField: 1, field1: "value1", field2: "value2" }];
   }),
-  entities: [{ id: "foo", testField: 1 }],
-  entityType: "program",
-  selectedEntity: { id: "foo" },
 };
+
+jest.mock("utils/state/useStore");
+const mockedUseStore = useStore as jest.MockedFunction<typeof useStore>;
+mockedUseStore.mockReturnValue({ selectedEntity: { id: "foo" } });
 
 describe("autosaveFieldData", () => {
   it("should save fieldData if fields have been updated", async () => {

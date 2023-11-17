@@ -39,8 +39,8 @@ export const DropdownField = ({
 }: Props) => {
   const { report, updateReport, copyEligibleReportsByState } =
     useContext(ReportContext);
-  const { entities, entityType, updateEntities, selectedEntity } =
-    useContext(EntityContext);
+  const { selectedEntity } = useStore();
+  const { prepareEntityPayload } = useContext(EntityContext);
   const { full_name, state } = useStore().user ?? {};
 
   // fetch the option values and format them if necessary
@@ -152,9 +152,7 @@ export const DropdownField = ({
         user,
         entityContext: {
           selectedEntity,
-          entityType,
-          updateEntities,
-          entities,
+          prepareEntityPayload,
         },
       });
     }
