@@ -3,8 +3,10 @@ import { useFormContext } from "react-hook-form";
 // components
 import { SingleInputDateField as CmsdsDateField } from "@cmsgov/design-system";
 import { Box } from "@chakra-ui/react";
-// utils
+import { EntityContext, ReportContext } from "components";
+// types
 import { AnyObject, CustomHtmlElement, InputChangeEvent } from "types";
+// utils
 import {
   autosaveFieldData,
   labelTextWithOptional,
@@ -13,8 +15,6 @@ import {
   useStore,
   getAutosaveFields,
 } from "utils";
-import { ReportContext } from "components";
-import { EntityContext } from "components/reports/EntityProvider";
 
 export const DateField = ({
   name,
@@ -30,10 +30,10 @@ export const DateField = ({
   const defaultValue = "";
   const [displayValue, setDisplayValue] = useState<string>(defaultValue);
   const { full_name, state } = useStore().user ?? {};
+  const { selectedEntity } = useStore();
 
   const { report, updateReport } = useContext(ReportContext);
-  const { entities, entityType, updateEntities, selectedEntity } =
-    useContext(EntityContext);
+  const { prepareEntityPayload } = useContext(EntityContext);
 
   // get form context and register form field
   const form = useFormContext();
@@ -104,9 +104,7 @@ export const DateField = ({
         user,
         entityContext: {
           selectedEntity,
-          entityType,
-          updateEntities,
-          entities,
+          prepareEntityPayload,
         },
       });
     }

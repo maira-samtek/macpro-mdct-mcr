@@ -7,6 +7,7 @@ import {
   DeleteDynamicFieldRecordModal,
   ReportContext,
   TextField,
+  EntityContext,
 } from "components";
 import { svgFilters } from "styles/theme";
 // utils
@@ -20,13 +21,12 @@ import {
 import { autosaveFieldData, getAutosaveFields, useStore } from "utils";
 // assets
 import cancelIcon from "assets/icons/icon_cancel_x_circle.png";
-import { EntityContext } from "components/reports/EntityProvider";
 
 export const DynamicField = ({ name, label, ...props }: Props) => {
   const { full_name, state, userIsEndUser } = useStore().user ?? {};
+  const { selectedEntity } = useStore();
   const { report, updateReport } = useContext(ReportContext);
-  const { entities, entityType, updateEntities, selectedEntity } =
-    useContext(EntityContext);
+  const { prepareEntityPayload } = useContext(EntityContext);
   const [displayValues, setDisplayValues] = useState<EntityShape[]>([]);
   const [selectedRecord, setSelectedRecord] = useState<EntityShape | undefined>(
     undefined
@@ -91,9 +91,7 @@ export const DynamicField = ({ name, label, ...props }: Props) => {
       user,
       entityContext: {
         selectedEntity,
-        entityType,
-        updateEntities,
-        entities,
+        prepareEntityPayload,
       },
     });
   };

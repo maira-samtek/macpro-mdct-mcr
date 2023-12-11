@@ -1,4 +1,4 @@
-import { AdminBannerData, MCRUser } from "types";
+import { AdminBannerData, EntityShape, MCRUser } from "types";
 
 // initial user state
 export interface McrUserState {
@@ -25,4 +25,13 @@ export interface AdminBannerState {
   setBannerLoading: (bannerLoading: boolean) => void;
   setBannerErrorMessage: (bannerErrorMessage: string) => void;
   setBannerDeleting: (bannerDeleting: boolean) => void;
+}
+
+// initial entity state
+export interface McrEntityState {
+  // INITIAL STATE
+  selectedEntity: EntityShape | undefined;
+  // ACTIONS
+  setSelectedEntity: (newSelectedEntity: EntityShape | undefined) => void;
+  clearSelectedEntity: () => void;
 }
