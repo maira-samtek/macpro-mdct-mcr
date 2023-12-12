@@ -6,6 +6,7 @@ import { EntityDetailsOverlay } from "./EntityDetailsOverlay";
 import {
   mockAdminUserStore,
   mockEntityDetailsContext,
+  mockEntityStore,
   mockMLRReportEntityStartedFieldData,
   mockModalOverlayForm,
   mockStateUserStore,
@@ -22,6 +23,7 @@ const mockOnSubmit = jest.fn();
 
 jest.mock("utils/state/useStore");
 const mockedUseStore = useStore as jest.MockedFunction<typeof useStore>;
+mockedUseStore.mockReturnValue(mockEntityStore);
 
 const entityDetailsOverlayComponentStateUser = (
   <RouterWrappedComponent>

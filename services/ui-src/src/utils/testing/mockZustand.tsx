@@ -1,6 +1,16 @@
-import { mockBannerData } from "./setupJest";
+import {
+  mockAccessMeasuresEntity,
+  mockBannerData,
+  mockQualityMeasuresEntity,
+} from "./setupJest";
 // types
-import { AdminBannerState, McrUserState, UserRoles } from "types";
+import {
+  AdminBannerState,
+  EntityType,
+  McrEntityState,
+  McrUserState,
+  UserRoles,
+} from "types";
 
 // USER STATES / STORE
 
@@ -134,9 +144,23 @@ export const mockBannerStore: AdminBannerState = {
   setBannerDeleting: () => {},
 };
 
+// ENTITY STATES / STORE
+
+export const mockEntityStore: McrEntityState = {
+  selectedEntity: mockAccessMeasuresEntity,
+  entities: [mockAccessMeasuresEntity, mockQualityMeasuresEntity],
+  entityType: "accessMeasures" as EntityType,
+  setSelectedEntity: () => {},
+  clearSelectedEntity: () => {},
+  setEntities: () => {},
+  clearEntities: () => {},
+  setEntityType: () => {},
+};
+
 // BOUND STORE
 
-export const mockUseStore: McrUserState & AdminBannerState = {
+export const mockUseStore: McrUserState & AdminBannerState & McrEntityState = {
   ...mockStateUserStore,
   ...mockBannerStore,
+  ...mockEntityStore,
 };

@@ -1,4 +1,4 @@
-import { EntityType, ReportStatus } from "types";
+import { ReportStatus } from "types";
 
 import {
   mockStandardReportPageJson,
@@ -572,13 +572,7 @@ export const mockMLREntityStartedReportContext = {
 };
 
 export const mockEntityDetailsContext = {
-  selectedEntity: undefined,
-  entities: [],
-  entityType: "program" as EntityType,
-  updateEntities: jest.fn(),
-  setEntities: jest.fn(),
-  setSelectedEntity: jest.fn(),
-  setEntityType: jest.fn(),
+  prepareEntityPayload: jest.fn(),
 };
 
 export const mockMLRLockedReportContext = {

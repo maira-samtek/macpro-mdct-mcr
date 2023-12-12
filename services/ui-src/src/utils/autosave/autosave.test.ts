@@ -42,12 +42,10 @@ const fields = [
 ];
 
 const mockEntityContext: EntityContextShape = {
-  updateEntities: jest.fn(() => {
+  prepareEntityPayload: jest.fn(() => {
     return [{ id: "foo", testField: 1, field1: "value1", field2: "value2" }];
   }),
-  entities: [{ id: "foo", testField: 1 }],
-  entityType: "program",
-  selectedEntity: { id: "foo" },
+  selectedEntity: { id: "foo", entityType: "program" },
 };
 
 describe("autosaveFieldData", () => {

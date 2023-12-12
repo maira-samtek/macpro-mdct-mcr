@@ -5,6 +5,7 @@ import {
   AdminBannerData,
   AdminBannerState,
   EntityShape,
+  EntityType,
   McrEntityState,
   MCRUser,
   McrUserState,
@@ -59,6 +60,8 @@ const bannerStore = (set: Function) => ({
 const entityStore = (set: Function) => ({
   // initial state
   selectedEntity: undefined,
+  entities: undefined,
+  entityType: undefined,
   // actions
   setSelectedEntity: (newSelectedEntity: EntityShape | undefined) =>
     set(
@@ -74,6 +77,30 @@ const entityStore = (set: Function) => ({
     set(() => ({ selectedEntity: undefined }), false, {
       type: "clearSelectedEntity",
     }),
+  setEntities: (newEntities: EntityShape[] | undefined) =>
+    set(
+      () => ({
+        entities: newEntities,
+      }),
+      false,
+      {
+        type: "setEntities",
+      }
+    ),
+  clearEntities: () =>
+    set(() => ({ entities: undefined }), false, {
+      type: "clearEntities",
+    }),
+  setEntityType: (newEntityType: EntityType | undefined) =>
+    set(
+      () => ({
+        entityType: newEntityType,
+      }),
+      false,
+      {
+        type: "setEntityType",
+      }
+    ),
 });
 
 export const useStore = create(

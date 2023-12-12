@@ -1,41 +1,45 @@
-import React, { MouseEventHandler, useContext, useEffect } from "react";
+import React, { MouseEventHandler, useEffect } from "react";
 // components
 import { Box, Button, Flex, Image, Spinner, Text } from "@chakra-ui/react";
 import { Form, ReportPageIntro } from "components";
 // types
 import { EntityShape, EntityType, FormJson } from "types";
-// utils
-
 // assets
 import arrowLeftBlue from "assets/icons/icon_arrow_left_blue.png";
 // verbiage
 import accordionVerbiage from "../../verbiage/pages/accordion";
 import overlayVerbiage from "../../verbiage/pages/overlays";
-import { EntityContext } from "components/reports/EntityProvider";
+// utils
+import { useStore } from "utils";
 
 export const EntityDetailsOverlay = ({
   closeEntityDetailsOverlay,
-  entityType,
-  entities,
   form,
   onSubmit,
-  selectedEntity,
   disabled,
   setEntering,
   submitting,
   validateOnRender,
 }: Props) => {
   // Entity Provider Setup
-  const { setEntities, setSelectedEntity, setEntityType } =
-    useContext(EntityContext);
+  const {
+    selectedEntity,
+    entities,
+    entityType,
+    setSelectedEntity,
+    clearSelectedEntity,
+    setEntities,
+    clearEntities,
+    setEntityType,
+  } = useStore();
 
   useEffect(() => {
     setSelectedEntity(selectedEntity);
     setEntityType(entityType);
     setEntities(entities);
     return () => {
-      setEntities([]);
-      setSelectedEntity(undefined);
+      clearEntities();
+      clearSelectedEntity();
     };
   }, [entityType, selectedEntity]);
 
@@ -45,12 +49,14 @@ export const EntityDetailsOverlay = ({
   const {
     report_programName: reportProgramName,
     report_planName: reportPlanName,
-  } = selectedEntity;
+  } = selectedEntity!;
   const eligibilityGroup = `${
-    selectedEntity["report_eligibilityGroup-otherText"] ||
-    selectedEntity.report_eligibilityGroup[0].value
+    selectedEntity!["report_eligibilityGroup-otherText"] ||
+    selectedEntity!.report_eligibilityGroup[0].value
   }`;
-  const reportingPeriod = `${selectedEntity.report_reportingPeriodStartDate} to ${selectedEntity.report_reportingPeriodEndDate}`;
+  const reportingPeriod = `${
+    selectedEntity!.report_reportingPeriodStartDate
+  } to ${selectedEntity!.report_reportingPeriodEndDate}`;
 
   const programInfo = [
     reportPlanName,

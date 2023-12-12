@@ -1,4 +1,4 @@
-import { AdminBannerData, EntityShape, MCRUser } from "types";
+import { AdminBannerData, EntityShape, EntityType, MCRUser } from "types";
 
 // initial user state
 export interface McrUserState {
@@ -31,7 +31,12 @@ export interface AdminBannerState {
 export interface McrEntityState {
   // INITIAL STATE
   selectedEntity: EntityShape | undefined;
+  entities: EntityShape[] | undefined;
+  entityType: EntityType | undefined;
   // ACTIONS
   setSelectedEntity: (newSelectedEntity: EntityShape | undefined) => void;
   clearSelectedEntity: () => void;
+  setEntities: (newEntities: EntityShape[] | undefined) => void;
+  clearEntities: () => void;
+  setEntityType: (newEntityType: EntityType | undefined) => void;
 }
