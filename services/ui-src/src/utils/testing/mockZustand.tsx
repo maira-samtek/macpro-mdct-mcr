@@ -1,6 +1,15 @@
-import { mockBannerData } from "./setupJest";
+import {
+  mockBannerData,
+  mockMcparReport,
+  mockReportsByState,
+} from "./setupJest";
 // types
-import { AdminBannerState, McrUserState, UserRoles } from "types";
+import {
+  AdminBannerState,
+  McrReportState,
+  McrUserState,
+  UserRoles,
+} from "types";
 
 // USER STATES / STORE
 
@@ -102,9 +111,23 @@ export const mockBannerStore: AdminBannerState = {
   setBannerDeleting: () => {},
 };
 
+// REPORT STATES / STORE
+export const mockReportStore: McrReportState = {
+  report: mockMcparReport,
+  reportsByState: mockReportsByState,
+  copyEligibleReportsByState: mockReportsByState,
+  lastSavedTime: "1:58 PM",
+  setReport: () => {},
+  setReportsByState: () => {},
+  clearReportsByState: () => {},
+  setCopyEligibleReportsByState: () => {},
+  setLastSavedTime: () => {},
+};
+
 // BOUND STORE
 
-export const mockUseStore: McrUserState & AdminBannerState = {
+export const mockUseStore: McrUserState & AdminBannerState & McrReportState = {
   ...mockStateUserStore,
   ...mockBannerStore,
+  ...mockReportStore,
 };

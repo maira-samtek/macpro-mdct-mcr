@@ -22,22 +22,22 @@ const mockEntering = false;
 jest.mock("utils/state/useStore");
 const mockedUseStore = useStore as jest.MockedFunction<typeof useStore>;
 
+const incompleteRowContext = {
+  ...mockMlrReportContext,
+  report: {
+    ...mockMlrReportContext.report,
+    formTemplate: {
+      ...mockMlrReportContext.report.formTemplate,
+      validationJson: {
+        report_mlrNumerator: "number",
+      },
+    },
+  },
+};
+
 const incompleteRowComponent = (
   <RouterWrappedComponent>
-    <ReportContext.Provider
-      value={{
-        ...mockMlrReportContext,
-        report: {
-          ...mockMlrReportContext.report,
-          formTemplate: {
-            ...mockMlrReportContext.report.formTemplate,
-            validationJson: {
-              report_mlrNumerator: "number",
-            },
-          },
-        },
-      }}
-    >
+    <ReportContext.Provider value={incompleteRowContext}>
       <Table content={{}}>
         <EntityRow
           entity={{
