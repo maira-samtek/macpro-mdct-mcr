@@ -43,9 +43,7 @@ export interface ReportContextMethods {
 }
 
 export interface ReportContextShape extends ReportContextMethods {
-  report: ReportShape | undefined;
-  reportsByState: ReportMetadataShape[] | undefined;
-  copyEligibleReportsByState: ReportMetadataShape[] | undefined;
+  contextIsLoaded: boolean;
   errorMessage?: string | undefined;
   lastSavedTime?: string | undefined;
 }
