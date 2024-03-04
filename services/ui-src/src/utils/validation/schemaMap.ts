@@ -1,7 +1,7 @@
 import * as schema from "./schemas";
-import * as coreSchema from "@enterprise-cmcs/mdct-core/validation";
+import * as coreSchema from "@enterprise-cmcs/mdct-core";
 
-console.log(coreSchema)
+console.log("coreSchema",coreSchema);
 
 export const schemaMap: any = {
   text: schema.text(),
