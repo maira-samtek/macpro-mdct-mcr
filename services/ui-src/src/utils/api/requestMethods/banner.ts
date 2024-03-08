@@ -1,6 +1,6 @@
 import { API } from "aws-amplify";
 import { getRequestHeaders } from "./getRequestHeaders";
-import { AdminBannerData } from "types/banners";
+import { AdminBannerData } from "@enterprise-cmcs/mdct-core/types";
 import { updateTimeout } from "utils";
 
 async function getBanner(bannerKey: string) {

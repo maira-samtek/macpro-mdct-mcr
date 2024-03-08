@@ -4,13 +4,9 @@ import uuid from "react-uuid";
 import { Form, Modal, ReportContext } from "components";
 import { Text, Spinner } from "@chakra-ui/react";
 // utils
-import {
-  AnyObject,
-  EntityShape,
-  FormJson,
-  isFieldElement,
-  ReportStatus,
-} from "types";
+import { AnyObject, EntityShape, FormJson, isFieldElement } from "types";
+import { ReportStatus } from "@enterprise-cmcs/mdct-core/types";
+
 import {
   entityWasUpdated,
   filterFormData,

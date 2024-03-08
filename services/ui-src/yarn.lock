@@ -3897,10 +3897,10 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
-"@enterprise-cmcs/mdct-core@^0.1.8":
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/@enterprise-cmcs/mdct-core/-/mdct-core-0.1.8.tgz#5aaef02f739bc963d08bb221c6d6982c9d88a8d2"
-  integrity sha512-3Zf5xLU2lkWFgE/8c5gSAYt/AlOSiQJFt9tHkWuZk0//6+vw38rPt+KnCcx1pAsdnH4BBHzYc35vWdHmsUBH1g==
+"@enterprise-cmcs/mdct-core@^0.1.9":
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/@enterprise-cmcs/mdct-core/-/mdct-core-0.1.9.tgz#a17d36a3a520448840a7731c8782f19f63578137"
+  integrity sha512-LKix6bP5Vwv8h7iL1igh4tQjZx51FE+eXt0S7xT0Xc8vBB1e2g+kfd3bwEos6OguOIh/f1ipDNhiTzHRcxnH3Q==
   dependencies:
     aws-amplify "^4.3.4"
     date-fns "^2.26.0"

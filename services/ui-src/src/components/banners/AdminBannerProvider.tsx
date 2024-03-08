@@ -1,6 +1,10 @@
 import { createContext, ReactNode, useMemo, useEffect } from "react";
 // utils
-import { AdminBannerData, AdminBannerMethods } from "types/banners";
+import {
+  AdminBannerData,
+  AdminBannerMethods,
+} from "@enterprise-cmcs/mdct-core/types";
+
 import { bannerId } from "../../constants";
 import { bannerErrors } from "verbiage/errors";
 // api

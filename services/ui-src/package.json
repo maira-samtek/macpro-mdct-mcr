@@ -18,7 +18,7 @@
     "@cmsgov/design-system": "^3.8.0",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
-    "@enterprise-cmcs/mdct-core": "^0.1.8",
+    "@enterprise-cmcs/mdct-core": "^0.1.9",
     "@hookform/resolvers": "^2.8.4",
     "aws-amplify": "^4.3.4",
     "bootstrap": "^5.1.3",

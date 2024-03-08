@@ -4,6 +4,7 @@ import { Auth } from "aws-amplify";
 // components
 import { Button, Heading, Input, Stack, Text } from "@chakra-ui/react";
 import { ErrorAlert } from "components";
+import { ReportStatus } from "@enterprise-cmcs/mdct-core/types";
 
 const useFormFields = (initialState: any) => {
   const [fields, setValues] = useState(initialState);
@@ -39,6 +40,7 @@ export const LoginCognito = () => {
 
   return (
     <Stack>
+      <div>We have ${ReportStatus.NOT_STARTED}</div>
       <Heading size="md" as="h2" sx={sx.heading}>
         Log In with Cognito
       </Heading>
